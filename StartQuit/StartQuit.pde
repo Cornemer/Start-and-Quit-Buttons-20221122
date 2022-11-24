@@ -2,39 +2,24 @@
 int appWidth, appHeight;
 Boolean start=false, noNowReallyStart=false;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
+color quitButtonColour, yellow=#FFFF00 , blue=#4169e1 ;
 //
 void setup()
 {
-  //Display & Orientation Algorithms not consider yet
-  size(400, 300); //Ladscape
+  size(400, 300); //Landscape
   //fullScreen(); //displayWidth, displayHeight
+  displayOrientation();
   appWidth = width;
   appHeight = height;
   //
-  //Population
-  float centerX = appWidth * 1/2;
-  float centerY = appHeight * 1/2;
-  quitButtonX = centerX - ( appWidth * 1/4);
-  quitButtonY = centerY - ( appHeight * 1/4);
-  quitButtonWidth = appWidth * 1/2; //Could be cenerX, but the is a point
-  quitButtonHeight = appHeight * 1/2; //Same comment as centerX, point is not a line
+  population();
+  //
 } //End setup
 //
 void draw ()
 {
   if ( noNowReallyStart==true ) {
-    background(0); //Night Mode not considered yet
-    //
-    //Hove Over Feature
-    println("X-value", quitButtonX, mouseX ,quitButtonX+quitButtonWidth)
-    println("Y-value", quitButtonY, mouseY ,quitButtonY+quitButtonHeight );
-    if () {
-    quitButtonColor = yellow
-    } else {
-    quitButtoncolor = purple
-    } //End Quit Button Color
-    fill(quitButtonColor);
-    rect( quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight ); //Quit Button with Hoverover
+    program();
   }
 } //End draw
 //
@@ -55,6 +40,9 @@ void mousePressed()
   //OS Level Start Button
   start = true;
   println("To Start, Press the Space Bar");
+  //
+  //Quit Button: Logical Rectangle, see println in draw()
+  if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) exit();
   //
 } //End mousePressed
 //
